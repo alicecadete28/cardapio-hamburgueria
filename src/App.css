@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.background-div {
+  width: 100%;
+  height: 456px;
+  background-image: url("./assets/bg.png");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.burger-div {
+  width: 185px;
+  height: 185px;
+  background-image: url("./assets/burger-cover.png");
+  position: absolute;
+  top: 51px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title-font {
+  color: #fff;
+  font-family: Inter;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 42px */
+  position: absolute;
+  top: 270px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sub-title-font {
+  color: #fff;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  position: absolute;
+  top: 316px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.frame-date {
+  display: inline-flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  background: #54cc0a;
+  position: absolute;
+  top: 356px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title {
+  color: #000;
+  font-family: Roboto;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.element-box {
+  width: 100%;
+}
