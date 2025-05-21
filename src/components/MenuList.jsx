@@ -8,7 +8,7 @@ import burger7 from '../assets/burger7.png';
 import burger8 from '../assets/burger8.png';
 import refri1 from '../assets/refri1.png';
 import refri2 from '../assets/refri2.png';
-export function MenuList({ onAdd }){
+export function MenuList({ onAdd, openPopUp }) {
   return(
     <div>
             <div className='text-center py-[70px]'>
@@ -26,7 +26,7 @@ export function MenuList({ onAdd }){
                     <button className='bg-gray-900 text-white px-5 rounded add-to-cart-btn'
                     data-name='Cheese Burger Duplo'
                     data-price='35.90'
-                    onClick={onAdd}
+                    onClick={ () => {onAdd(); openPopUp(); } }
                     >
                       <i className='fa fa-cart-plus text-lg text-white'></i>
                     </button>
