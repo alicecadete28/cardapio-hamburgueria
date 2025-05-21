@@ -7,7 +7,7 @@ import "../scripts.js";
 
 import { PopUp } from "./components/PopUp.jsx";
 
-createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
   </StrictMode>

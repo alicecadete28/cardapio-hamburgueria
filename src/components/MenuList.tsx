@@ -8,7 +8,17 @@ import burger7 from "../assets/burger7.png";
 import burger8 from "../assets/burger8.png";
 import refri1 from "../assets/refri1.png";
 import refri2 from "../assets/refri2.png";
-export function MenuList({ onAdd, openPopUp }: any) {
+import { PopUp } from "./PopUp";
+import { useState } from "react";
+export function MenuList({ onAdd }: any) {
+  // const { isOpen, openPopUp, closePopUp } = usePopUp();
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+
+  const handleAdd = (name: string, price: number) => {
+    console.log("Item adicionado ao carrinho");
+    onAdd(name, price);
+    setIsPopUpOpen(true);
+  };
   return (
     <div>
       <div className="text-center py-[70px]">
@@ -37,10 +47,7 @@ export function MenuList({ onAdd, openPopUp }: any) {
                 className="bg-gray-900 text-white px-5 rounded add-to-cart-btn"
                 data-name="Cheese Burger Duplo"
                 data-price="35.90"
-                onClick={() => {
-                  onAdd();
-                  openPopUp();
-                }}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -251,6 +258,8 @@ export function MenuList({ onAdd, openPopUp }: any) {
           </div>
         </div>
       </main>
+
+      {isPopUpOpen && <PopUp onClose={() => setIsPopUpOpen(false)} />}
 
       {/* BEBIDA ITENS */}
 
