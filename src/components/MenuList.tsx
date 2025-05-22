@@ -62,208 +62,216 @@ export function MenuList({ onAdd }: any) {
             </div>
           </div>
         </button>
-        <div className="flex gap-4">
-          <img
-            src={burger2}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex gap-4 p-2">
+            <img src={burger2} className="w-[144px] h-[144px] rounded" />
 
-          <div>
-            <p className="font-bold">Cheese Burger</p>
+            <div>
+              <p className="font-bold">Cheese Burger</p>
 
-            <p className="text-sm">
-              Pão levinho de fermentação natural da Trigou, burger 160g, queijo
-              prato e maionese da casa
-            </p>
+              <p className="text-sm">
+                Pão levinho de fermentação natural da Trigou, burger 160g,
+                queijo prato e maionese da casa
+              </p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 35,90</p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 35,90</p>
 
-              <button
-                className="bg-gray-900 px-5 rounded"
-                data-name="Cheese Burger"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 px-5 rounded"
+                  data-name="Cheese Burger"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </button>
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex gap-4 p-2">
+            <img src={burger3} className="w-[144px] h-[144px] rounded" />
 
-        <div className="flex gap-4">
-          <img
-            src={burger3}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+            <div>
+              <p className="font-bold">Smash Burger</p>
 
-          <div>
-            <p className="font-bold">Smash Burger</p>
+              <p className="text-sm">
+                Pão levinho de fermentação natural da Trigou, burger 160g,
+                queijo prato e maionese da casa
+              </p>
 
-            <p className="text-sm">
-              Pão levinho de fermentação natural da Trigou, burger 160g, queijo
-              prato e maionese da casa
-            </p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 35,90</p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 35,90</p>
-
-              <button
-                className="bg-gray-900 text-white px-5 rounded"
-                data-name="Smash Burger"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 text-white px-5 rounded"
+                  data-name="Smash Burger"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </button>
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex gap-4 p-2">
+            <img src={burger4} className="w-[144px] h-[144px] rounded" />
 
-        <div className="flex gap-4">
-          <img
-            src={burger4}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+            <div>
+              <p className="font-bold">Cheese Bacon</p>
 
-          <div>
-            <p className="font-bold">Cheese Bacon</p>
+              <p className="text-sm">
+                Pão levinho de fermentação natural da Trigou, burger 160g,
+                queijo prato e maionese da casa
+              </p>
 
-            <p className="text-sm">
-              Pão levinho de fermentação natural da Trigou, burger 160g, queijo
-              prato e maionese da casa
-            </p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 35,90</p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 35,90</p>
-
-              <button
-                className="bg-gray-900 px-5 rounded"
-                data-name="Cheese Bacon"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 px-5 rounded"
+                  data-name="Cheese Bacon"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </button>
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex gap-4 p-2">
+            <img src={burger5} className="w-[144px] h-[144px] rounded" />
 
-        <div className="flex gap-4">
-          <img
-            src={burger5}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+            <div>
+              <p className="font-bold">Cheese Burger Premium</p>
 
-          <div>
-            <p className="font-bold">Cheese Burger Premium</p>
+              <p className="text-sm">
+                Pão levinho de fermentação natural da Trigou, burger 160g,
+                queijo prato e maionese da casa
+              </p>
 
-            <p className="text-sm">
-              Pão levinho de fermentação natural da Trigou, burger 160g, queijo
-              prato e maionese da casa
-            </p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 35,90</p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 35,90</p>
-
-              <button
-                className="bg-gray-900 px-5 rounded"
-                data-name="Cheese Burger Premium"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 px-5 rounded"
+                  data-name="Cheese Burger Premium"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </button>
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex gap-4 p-2">
+            <img src={burger6} className="w-[144px] h-[144px] rounded" />
 
-        <div className="flex gap-4">
-          <img
-            src={burger6}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+            <div>
+              <p className="font-bold">Cheese Burger Onion</p>
 
-          <div>
-            <p className="font-bold">Cheese Burger Onion</p>
+              <p className="text-sm">
+                Pão levinho de fermentação natural da Trigou, burger 160g,
+                queijo prato e maionese da casa
+              </p>
 
-            <p className="text-sm">
-              Pão levinho de fermentação natural da Trigou, burger 160g, queijo
-              prato e maionese da casa
-            </p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 35,90</p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 35,90</p>
-
-              <button
-                className="bg-gray-900 px-5 rounded"
-                data-name="Cheese Burger Onion"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 px-5 rounded"
+                  data-name="Cheese Burger Onion"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </button>
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex gap-4 p-2">
+            <img src={burger7} className="w-[144px] h-[144px] rounded" />
 
-        <div className="flex gap-4">
-          <img
-            src={burger7}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+            <div>
+              <p className="font-bold">Cheese Salada</p>
 
-          <div>
-            <p className="font-bold">Cheese Salada</p>
+              <p className="text-sm">
+                Pão levinho de fermentação natural da Trigou, burger 160g,
+                queijo prato e maionese da casa
+              </p>
 
-            <p className="text-sm">
-              Pão levinho de fermentação natural da Trigou, burger 160g, queijo
-              prato e maionese da casa
-            </p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 35,90</p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 35,90</p>
-
-              <button
-                className="bg-gray-900 px-5 rounded"
-                data-name="Cheese Salada"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 px-5 rounded"
+                  data-name="Cheese Salada"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </button>
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex gap-4 p-2">
+            <img src={burger8} className="w-[144px] h-[144px] rounded" />
 
-        <div className="flex gap-4">
-          <img
-            src={burger8}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+            <div>
+              <p className="font-bold">Cheese Burger Super</p>
 
-          <div>
-            <p className="font-bold">Cheese Burger Super</p>
+              <p className="text-sm">
+                Pão levinho de fermentação natural da Trigou, burger 160g,
+                queijo prato e maionese da casa
+              </p>
 
-            <p className="text-sm">
-              Pão levinho de fermentação natural da Trigou, burger 160g, queijo
-              prato e maionese da casa
-            </p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 35,90</p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 35,90</p>
-
-              <button
-                className="bg-gray-900 px-5 rounded"
-                data-name="Cheese Burger Super"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 px-5 rounded"
+                  data-name="Cheese Burger Super"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </button>
       </main>
 
       {isPopUpOpen && <PopUp onClose={() => setIsPopUpOpen(false)} />}
@@ -273,55 +281,57 @@ export function MenuList({ onAdd }: any) {
       <div className="w-full px-[95px] my-2">
         <h2 className="font-bold text-3xl">Bebidas</h2>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 w-full h-auto px-[95px] gap-x-14 gap-y-10 pb-20 ">
-        <div className="flex gap-4">
-          <img
-            src={refri1}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex gap-4 p-2">
+            <img src={refri1} className="w-[144px] h-[144px] rounded" />
 
-          <div className="w-full">
-            <p className="font-bold">Coca Cola Lata</p>
+            <div className="w-full">
+              <p className="font-bold">Coca Cola Lata</p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 5,90</p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 5,90</p>
 
-              <button
-                className="bg-gray-900 px-5 rounded"
-                data-name="Coca Cola Lata"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 px-5 rounded"
+                  data-name="Coca Cola Lata"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </button>
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex gap-4">
+            <img src={refri2} className="w-[144px] h-[144px] rounded" />
 
-        <div className="flex gap-4">
-          <img
-            src={refri2}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+            <div className="w-full">
+              <p className="font-bold">Guaraná Lata</p>
 
-          <div className="w-full">
-            <p className="font-bold">Guaraná Lata</p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 5,90</p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 5,90</p>
-
-              <button
-                className="bg-gray-900 px-5 rounded"
-                data-name="Guaraná Lata"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 px-5 rounded"
+                  data-name="Guaraná Lata"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );
