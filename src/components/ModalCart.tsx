@@ -47,9 +47,10 @@ export function ModalCart({ totalCount, handleRemoveFromCart, carrinho }: any) {
             onClick={() => {
               const cartModal = document.getElementById("cart-modal");
 
-              cartModal.classList.toggle("hidden");
-
-              cartModal.classList.toggle("flex");
+              if (cartModal) {
+                cartModal.classList.toggle("hidden");
+                cartModal.classList.toggle("flex");
+              }
             }}
           >
             Fechar

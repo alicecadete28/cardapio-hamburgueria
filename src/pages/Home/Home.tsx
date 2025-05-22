@@ -8,8 +8,7 @@ export function Home() {
   const {
     carrinho,
     totalQuantidade,
-    // @ts-expect-error TS(2339): Property 'totalCount' does not exist on type '{ ca... Remove this comment to see the full error message
-    totalCount,
+    totalValor,
     handleAddToCart,
     handleRemoveFromCart,
   } = useCart();
@@ -18,7 +17,7 @@ export function Home() {
       <Header />
       <MenuList onAdd={handleAddToCart} />
       <ModalCart
-        totalCount={totalCount}
+        totalCount={totalValor}
         handleRemoveFromCart={handleRemoveFromCart}
         carrinho={carrinho}
       />

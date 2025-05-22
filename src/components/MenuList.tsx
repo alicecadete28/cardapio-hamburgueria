@@ -10,15 +10,20 @@ import refri1 from "../assets/refri1.png";
 import refri2 from "../assets/refri2.png";
 import { PopUp } from "./PopUp";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function MenuList({ onAdd }: any) {
-  // const { isOpen, openPopUp, closePopUp } = usePopUp();
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
   const handleAdd = (name: string, price: number) => {
     console.log("Item adicionado ao carrinho");
     onAdd(name, price);
     setIsPopUpOpen(true);
+  };
+
+  const navigate = useNavigate();
+  const handleClick = (name: string) => {
+    navigate(`/item/${name}`);
   };
   return (
     <div>
@@ -27,35 +32,36 @@ export function MenuList({ onAdd }: any) {
       </div>
 
       <main className="grid grid-cols-1 md:grid-cols-2 w-full h-auto px-[95px] gap-x-14 gap-y-8 mb-8">
-        <div className="flex gap-4">
-          <img
-            src={burger1}
-            className="w-[144px] h-[144px] rounded hover:scale-110"
-          />
+        <button
+          className="  hover:bg-gray-100 hover:scale-110 transition-all duration-300 ease-in-out"
+          onClick={() => handleClick("burger1")}
+        >
+          <div className="flex p-2 gap-4">
+            <img src={burger1} className="w-[144px] h-[144px] rounded" />
 
-          <div>
-            <p className="font-bold">Cheese Burger Duplo</p>
+            <div>
+              <p className="font-bold">Cheese Burger Duplo</p>
 
-            <p className="text-sm">
-              Pão levinho de fermentação natural da Trigou, burger 160g, queijo
-              prato e maionese da casa
-            </p>
+              <p className="text-sm">
+                Pão levinho de fermentação natural da Trigou, burger 160g,
+                queijo prato e maionese da casa
+              </p>
 
-            <div className="flex justify-between items-center mt-[20px]">
-              <p>R$ 35,90</p>
+              <div className="flex justify-between items-center mt-[20px]">
+                <p>R$ 35,90</p>
 
-              <button
-                className="bg-gray-900 text-white px-5 rounded add-to-cart-btn"
-                data-name="Cheese Burger Duplo"
-                data-price="35.90"
-                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
-              >
-                <i className="fa fa-cart-plus text-lg text-white"></i>
-              </button>
+                <button
+                  className="bg-gray-900 text-white px-5 rounded add-to-cart-btn"
+                  data-name="Cheese Burger Duplo"
+                  data-price="35.90"
+                  onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
+                >
+                  <i className="fa fa-cart-plus text-lg text-white"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-
+        </button>
         <div className="flex gap-4">
           <img
             src={burger2}
@@ -77,7 +83,7 @@ export function MenuList({ onAdd }: any) {
                 className="bg-gray-900 px-5 rounded"
                 data-name="Cheese Burger"
                 data-price="35.90"
-                onClick={onAdd}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -106,7 +112,7 @@ export function MenuList({ onAdd }: any) {
                 className="bg-gray-900 text-white px-5 rounded"
                 data-name="Smash Burger"
                 data-price="35.90"
-                onClick={onAdd}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -135,7 +141,7 @@ export function MenuList({ onAdd }: any) {
                 className="bg-gray-900 px-5 rounded"
                 data-name="Cheese Bacon"
                 data-price="35.90"
-                onClick={onAdd}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -164,7 +170,7 @@ export function MenuList({ onAdd }: any) {
                 className="bg-gray-900 px-5 rounded"
                 data-name="Cheese Burger Premium"
                 data-price="35.90"
-                onClick={onAdd}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -193,7 +199,7 @@ export function MenuList({ onAdd }: any) {
                 className="bg-gray-900 px-5 rounded"
                 data-name="Cheese Burger Onion"
                 data-price="35.90"
-                onClick={onAdd}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -222,7 +228,7 @@ export function MenuList({ onAdd }: any) {
                 className="bg-gray-900 px-5 rounded"
                 data-name="Cheese Salada"
                 data-price="35.90"
-                onClick={onAdd}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -251,7 +257,7 @@ export function MenuList({ onAdd }: any) {
                 className="bg-gray-900 px-5 rounded"
                 data-name="Cheese Burger Super"
                 data-price="35.90"
-                onClick={onAdd}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -285,7 +291,7 @@ export function MenuList({ onAdd }: any) {
                 className="bg-gray-900 px-5 rounded"
                 data-name="Coca Cola Lata"
                 data-price="35.90"
-                onClick={onAdd}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -309,7 +315,7 @@ export function MenuList({ onAdd }: any) {
                 className="bg-gray-900 px-5 rounded"
                 data-name="Guaraná Lata"
                 data-price="35.90"
-                onClick={onAdd}
+                onClick={() => handleAdd("Cheese Burger Duplo", 35.9)}
               >
                 <i className="fa fa-cart-plus text-lg text-white"></i>
               </button>
