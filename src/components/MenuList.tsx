@@ -8,6 +8,11 @@ import burger7 from "../assets/burger7.png";
 import burger8 from "../assets/burger8.png";
 import refri1 from "../assets/refri1.png";
 import refri2 from "../assets/refri2.png";
+import batata from "../assets/batata.png";
+import onion from "../assets/onion.png";
+import nuggets from "../assets/nuggets.png";
+import milkshake from "../assets/milkshake.png";
+import casquinha from "../assets/casquinha.png";
 import { PopUp } from "./PopUp";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -190,6 +195,53 @@ export function MenuList({ onAdd, carrinho }: any) {
       category: "bebidas",
       ingredients: [],
     },
+    {
+      id: "batata",
+      name: "Batata Frita",
+      description: "Porção de batatas fritas crocantes",
+      price: 12.9,
+      image: batata,
+      category: "acompanhamentos",
+      ingredients: [],
+    },
+    {
+      id: "onions",
+      name: "Onion Rings",
+      description: "Anéis de cebola empanados e crocantes",
+      price: 14.9,
+      image: onion,
+      category: "acompanhamentos",
+      ingredients: [],
+    },
+    {
+      id: "nuggets",
+      name: "Chicken Nuggets",
+      description: "Porção de nuggets de frango crocantes (8 unidades)",
+      price: 16.9,
+      image: nuggets,
+      category: "acompanhamentos",
+      ingredients: [],
+    },
+    {
+      id: "milkshake",
+      name: "Milk Shake",
+      description:
+        "Milk shake cremoso nos sabores chocolate, morango ou baunilha",
+      price: 18.9,
+      image: milkshake,
+      category: "sobremesas",
+      ingredients: [],
+    },
+    {
+      id: "casquinha",
+      name: "Casquinha",
+      description:
+        "Casquinha de sorvete nos sabores chocolate, morango ou baunilha",
+      price: 8.9,
+      image: casquinha,
+      category: "sobremesas",
+      ingredients: [],
+    },
   ];
 
   const filteredProducts = products.filter(
@@ -311,7 +363,7 @@ export function MenuList({ onAdd, carrinho }: any) {
         onCategoryChange={setActiveCategory}
       />
 
-      <div className="px-6 md:px-12 mb-12">
+      <div className="px-6 md:px-12 mb-32">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map(renderProductCard)}
         </div>
