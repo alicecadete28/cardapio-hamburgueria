@@ -10,9 +10,10 @@ export function Navbar({ activeCategory, onCategoryChange }: NavbarProps) {
     {
       id: "hamburger",
       name: "Hambúrger",
+      shortName: "Burger",
       icon: (
         <svg
-          className="w-6 h-6 mb-2"
+          className="w-5 h-5 md:w-6 md:h-6 mb-1 md:mb-2"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -29,9 +30,10 @@ export function Navbar({ activeCategory, onCategoryChange }: NavbarProps) {
     {
       id: "acompanhamentos",
       name: "Acompanhamentos",
+      shortName: "Acomp.",
       icon: (
         <svg
-          className="w-6 h-6 mb-2"
+          className="w-5 h-5 md:w-6 md:h-6 mb-1 md:mb-2"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -48,9 +50,10 @@ export function Navbar({ activeCategory, onCategoryChange }: NavbarProps) {
     {
       id: "sobremesas",
       name: "Sobremesas",
+      shortName: "Doces",
       icon: (
         <svg
-          className="w-6 h-6 mb-2"
+          className="w-5 h-5 md:w-6 md:h-6 mb-1 md:mb-2"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -67,9 +70,10 @@ export function Navbar({ activeCategory, onCategoryChange }: NavbarProps) {
     {
       id: "bebidas",
       name: "Bebidas",
+      shortName: "Bebidas",
       icon: (
         <svg
-          className="w-6 h-6 mb-2"
+          className="w-5 h-5 md:w-6 md:h-6 mb-1 md:mb-2"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -86,23 +90,27 @@ export function Navbar({ activeCategory, onCategoryChange }: NavbarProps) {
   ];
 
   return (
-    <nav className="w-full bg-gradient-to-b from-white to-gray-50 shadow-lg mb-12">
-      <div className="max-w-7xl mx-auto px-4 py-2">
-        <ul className="flex justify-center items-center space-x-8 md:space-x-16">
+    <nav className="w-full bg-gradient-to-b from-white to-gray-50 shadow-lg mb-12 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-2 md:px-4 py-1 md:py-2">
+        <ul className="flex justify-between md:justify-center items-center md:space-x-16">
           {categories.map((category) => (
             <li key={category.id}>
               <button
                 onClick={() => onCategoryChange(category.id)}
-                className={`flex flex-col items-center px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                className={`flex flex-col items-center px-2 md:px-8 py-2 md:py-4 rounded-lg transition-all duration-300 transform hover:scale-105 ${
                   activeCategory === category.id
                     ? "bg-red-50 text-red-500 shadow-md"
                     : "text-gray-600 hover:bg-gray-50 hover:text-red-500"
                 }`}
               >
                 {category.icon}
-                <span className="text-base font-medium">{category.name}</span>
+                <span className="text-xs md:text-base font-medium">
+                  {window.innerWidth <= 768
+                    ? category.shortName
+                    : category.name}
+                </span>
                 {activeCategory === category.id && (
-                  <div className="h-1 w-12 bg-red-500 rounded-full mt-2 animate-pulse" />
+                  <div className="h-1 w-8 md:w-12 bg-red-500 rounded-full mt-1 md:mt-2 animate-pulse" />
                 )}
               </button>
             </li>
