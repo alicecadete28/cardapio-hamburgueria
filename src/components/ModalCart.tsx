@@ -1,4 +1,21 @@
-export function ModalCart({ totalCount, handleRemoveFromCart, carrinho }: any) {
+import { Product } from "../types/Product";
+
+interface CartItem {
+  product: Product;
+  quantity: number;
+}
+
+interface ModalCartProps {
+  totalCount: string;
+  handleRemoveFromCart: (productId: string) => void;
+  carrinho: CartItem[];
+}
+
+export function ModalCart({
+  totalCount,
+  handleRemoveFromCart,
+  carrinho,
+}: ModalCartProps) {
   return (
     <div
       className="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden"
@@ -9,15 +26,16 @@ export function ModalCart({ totalCount, handleRemoveFromCart, carrinho }: any) {
 
         <div id="cart-items" className="flex justify-between mb-2 flex-col">
           <ul>
-            {carrinho.map((item: any) => (
+            {carrinho.map((item) => (
               <li
-                key={item.id}
+                key={item.product.id}
                 className="flex items-center justify-between border-b-2 py-2"
               >
-                {item.quantity} x R$ {item.price.toFixed(2)} - {item.name}
+                {item.quantity} x R$ {item.product.price.toFixed(2)} -{" "}
+                {item.product.name}
                 <button
                   className="bg-red-500 text-white rounded ml-2 px-2"
-                  onClick={() => handleRemoveFromCart(item.id)}
+                  onClick={() => handleRemoveFromCart(item.product.id)}
                 >
                   <i className="fa fa-trash"></i>
                 </button>

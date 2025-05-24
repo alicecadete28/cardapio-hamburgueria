@@ -1,4 +1,4 @@
-import { useCart } from "../../hooks/useCart";
+import { useCartContext } from "../../contexts/CartContext";
 import { Header } from "../../components/Header";
 import { MenuList } from "../../components/MenuList";
 import { ModalCart } from "../../components/ModalCart";
@@ -11,13 +11,14 @@ export function Home() {
     totalValor,
     handleAddToCart,
     handleRemoveFromCart,
-  } = useCart();
+  } = useCartContext();
+
   return (
     <>
       <Header />
-      <MenuList onAdd={handleAddToCart} />
+      <MenuList onAdd={handleAddToCart} carrinho={carrinho} />
       <ModalCart
-        totalCount={totalValor}
+        totalCount={totalValor.toFixed(2)}
         handleRemoveFromCart={handleRemoveFromCart}
         carrinho={carrinho}
       />

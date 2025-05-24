@@ -1,11 +1,10 @@
 import { useState, useMemo } from "react";
+import { Product } from "../types/Product";
 
-type CartItem = {
-  id: string;
-  name: string;
-  price: number;
+interface CartItem {
+  product: Product & { removedIngredients?: string[] };
   quantity: number;
-};
+}
 
 export function useCart() {
   const [carrinho, setCarrinho] = useState<CartItem[]>([]);
@@ -19,40 +18,34 @@ export function useCart() {
 
   const totalValor = useMemo(() => {
     return carrinho.reduce(
-      (valorAcumulado, item) => valorAcumulado + item.price * item.quantity,
+      (valorAcumulado, item) =>
+        valorAcumulado + item.product.price * item.quantity,
       0
     );
   }, [carrinho]);
 
-  function handleAddToCart(itemName: string, itemPrice: number) {
-    const novoItem = {
-      id: Date.now().toString() + Math.random().toString(36).substring(2),
-      name: itemName,
-      price: itemPrice,
-      quantity: 1,
-    };
-
-    //Vamos definir o novo estado do carrinho (vazio inicialmente)
-
+  function handleAddToCart(product: Product) {
     setCarrinho((prevCarrinho) => {
-      const itemExistente = prevCarrinho.find((item) => item.name === itemName);
+      const itemExistente = prevCarrinho.find(
+        (item) => item.product.id === product.id
+      );
 
       if (itemExistente) {
         return prevCarrinho.map((item) =>
-          item.name === itemName
+          item.product.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
-        return [...prevCarrinho, novoItem];
+        return [...prevCarrinho, { product, quantity: 1 }];
       }
     });
   }
 
-  function handleRemoveFromCart(itemId: any) {
+  function handleRemoveFromCart(productId: string) {
     setCarrinho((prevCarrinho) => {
       const carrinhoAtualizado = prevCarrinho.map((item) => {
-        if (item.id === itemId) {
+        if (item.product.id === productId) {
           return { ...item, quantity: item.quantity - 1 };
         } else {
           return item;
