@@ -1,10 +1,17 @@
 import { useCartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import { BackButton } from "../../components/BackButton";
+import { CartItem } from "../../types/CartItem";
 
 export function Cart() {
   const { carrinho, totalValor, handleRemoveFromCart } = useCartContext();
   const navigate = useNavigate();
+
+  const handleClick = (item: CartItem) => {
+    navigate(`/item/${item.product.id}`, {
+      state: { product: item.product },
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 py-8">
@@ -33,7 +40,8 @@ export function Cart() {
                   <img
                     src={item.product.image}
                     alt={item.product.name}
-                    className="w-24 h-24 object-contain bg-white rounded"
+                    className="w-24 h-24 object-contain bg-white rounded cursor-pointer"
+                    onClick={() => handleClick(item)}
                   />
                   <div className="flex-1 ml-6">
                     <h3 className="text-lg font-semibold">
@@ -42,6 +50,20 @@ export function Cart() {
                     <p className="text-gray-600 text-sm mt-1">
                       {item.product.description}
                     </p>
+                    {item.customizations.removedIngredients.length > 0 && (
+                      <p className="text-gray-600 text-sm mt-1">
+                        <span className="text-red-500">Sem: </span>
+                        {item.customizations.removedIngredients
+                          .map(
+                            (ingredientId) =>
+                              item.product.ingredients.find(
+                                (i) => i.id === ingredientId
+                              )?.name
+                          )
+                          .filter(Boolean)
+                          .join(", ")}
+                      </p>
+                    )}
                     <div className="flex items-center justify-between mt-4">
                       <div className="text-gray-600">
                         Quantidade: {item.quantity}
@@ -52,7 +74,10 @@ export function Cart() {
                     </div>
                   </div>
                   <button
-                    onClick={() => handleRemoveFromCart(item.product.id)}
+                    onClick={() => {
+                      console.log("Removendo item com ID:", item.id);
+                      handleRemoveFromCart(item.id);
+                    }}
                     className="ml-6 text-red-500 hover:text-red-600"
                   >
                     <i className="fa fa-trash"></i>

@@ -1,16 +1,14 @@
 import { createContext, useContext, ReactNode } from "react";
 import { useCart } from "../hooks/useCart";
 import { Product } from "../types/Product";
+import { CartItem } from "../types/CartItem";
 
 interface CartContextData {
-  carrinho: Array<{
-    product: Product;
-    quantity: number;
-  }>;
+  carrinho: CartItem[];
+  handleAddToCart: (product: Product) => void;
   totalQuantidade: number;
   totalValor: number;
-  handleAddToCart: (product: Product) => void;
-  handleRemoveFromCart: (productId: string) => void;
+  handleRemoveFromCart: (itemId: string) => void;
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);

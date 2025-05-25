@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useLocation } from "react-router-dom"; // se usar rotas dinâmicas
+import { useParams, useLocation, useNavigate } from "react-router-dom"; // se usar rotas dinâmicas
 import burger1 from "../../assets/burger1.png"; // Importando a imagem do burger
 import { Product } from "../../types/Product";
 import { useCartContext } from "../../contexts/CartContext";
@@ -10,6 +10,7 @@ export default function ProductDetailPage() {
   const { state } = useLocation();
   const { product } = state as { product: Product };
   const { carrinho, handleAddToCart } = useCartContext();
+  const navigate = useNavigate();
   const [quantidade, setQuantidade] = useState(0);
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [removedIngredients, setRemovedIngredients] = useState<string[]>([]);
@@ -40,8 +41,9 @@ export default function ProductDetailPage() {
   const handleConcluir = () => {
     const customizedProduct = {
       ...product,
-      removedIngredients,
-      price: product.price,
+      customizations: {
+        removedIngredients: removedIngredients,
+      },
     };
 
     for (let i = 0; i < quantidade; i++) {
@@ -50,6 +52,11 @@ export default function ProductDetailPage() {
     setIsPopUpOpen(true);
     setQuantidade(0);
     setRemovedIngredients([]);
+
+    // Redireciona para a home após um pequeno delay para o PopUp ser visível
+    setTimeout(() => {
+      navigate("/");
+    }, 1500);
   };
 
   return (
