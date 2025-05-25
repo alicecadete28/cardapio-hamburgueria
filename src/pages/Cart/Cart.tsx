@@ -6,12 +6,13 @@ import { CartItem } from "../../types/CartItem";
 export function Cart() {
   const { carrinho, totalValor, handleRemoveFromCart } = useCartContext();
   const navigate = useNavigate();
-
   const handleClick = (item: CartItem) => {
     navigate(`/item/${item.product.id}`, {
       state: { product: item.product },
     });
   };
+
+  console.log(carrinho);
 
   return (
     <div className="min-h-screen bg-gray-100 py-8">
@@ -95,10 +96,7 @@ export function Cart() {
               </div>
 
               <button
-                onClick={() => {
-                  // Aqui você pode adicionar a lógica de finalização do pedido
-                  alert("Pedido finalizado com sucesso!");
-                }}
+                onClick={() => navigate("/checkout")}
                 className="w-full bg-green-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-600 transition-colors"
               >
                 Finalizar Pedido

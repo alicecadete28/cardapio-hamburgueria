@@ -2,9 +2,11 @@ import { Dialog } from "./ui/dialog";
 
 interface PopUpProps {
   onClose: () => void;
+  title: string;
+  description: string;
 }
 
-export function PopUp({ onClose }: PopUpProps) {
+export function PopUp({ onClose, title, description }: PopUpProps) {
   return (
     <Dialog open={true} onOpenChange={onClose}>
       <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -26,11 +28,9 @@ export function PopUp({ onClose }: PopUpProps) {
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              Item adicionado!
+              {title}
             </h3>
-            <p className="text-gray-600 text-center mb-4">
-              O item foi adicionado ao seu carrinho com sucesso.
-            </p>
+            <p className="text-gray-600 text-center mb-4">{description}</p>
             <button
               onClick={onClose}
               className="bg-red-500 hover:bg-red-600 text-white font-medium px-6 py-2 rounded-full transition-colors duration-200"

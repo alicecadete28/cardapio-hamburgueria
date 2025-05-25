@@ -92,7 +92,7 @@ export const product: (Product & { category: string })[] = [
     id: "burger4",
     name: "Chicken Burger",
     description:
-      "Filé de frango empanado na hora até ficar super crocante, com queijo prato derretido, alface americana, tomate e nossa maionese especial, servido em um pão brioche quentinho.",
+      "Filé de frango empanado na hora até ficar super crocante, com queijo prato derretido, alface americana, tomate e nossa maionese especial, servido em um pão com gergelim.",
     price: 35.9,
     image: burger4,
     category: "hamburger",
@@ -119,7 +119,7 @@ export const product: (Product & { category: string })[] = [
     id: "burger5",
     name: "Premium Burger",
     description:
-      "Hambúrguer premium de carne wagyu 200g, queijo gruyère importado, mix de cogumelos salteados, cebola caramelizada, rúcula fresca e molho trufado, servido em um pão australiano artesanal.",
+      "Hambúrguer premium de carne wagyu 200g, queijo gruyère importado, mix de cogumelos salteados, cebola caramelizada, rúcula fresca e molho trufado, servido em um pão com gergelim.",
     price: 35.9,
     image: burger5,
     category: "hamburger",
@@ -157,7 +157,7 @@ export const product: (Product & { category: string })[] = [
     id: "burger6",
     name: "Salad Cheese Burger",
     description:
-      "Hambúrguer de fraldinha suculento, queijo minas fresco, mix de folhas orgânicas, tomate cereja, pepino fresco e molho de mostarda com mel, servido em um pão integral artesanal.",
+      "Hambúrguer de fraldinha suculento, queijo minas fresco, mix de folhas orgânicas, tomate cereja, pepino fresco e molho de mostarda com mel, servido em um pão com gergelim.",
     price: 35.9,
     image: burger6,
     category: "hamburger",

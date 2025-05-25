@@ -1,5 +1,5 @@
 import { PopUp } from "./PopUp";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../types/Product";
 import { useCart } from "../hooks/useCart";
@@ -8,6 +8,13 @@ import { product } from "../data/categories";
 
 export function MenuList({ onAdd, carrinho }: any) {
   const [activeCategory, setActiveCategory] = useState("hamburger");
+  const [hasRecentOrder, setHasRecentOrder] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const formData = localStorage.getItem("formData");
+    setHasRecentOrder(!!formData);
+  }, []);
 
   const filteredProducts = product.filter(
     (product) => product.category === activeCategory
@@ -44,10 +51,12 @@ export function MenuList({ onAdd, carrinho }: any) {
     }));
   };
 
-  const navigate = useNavigate();
-
   const handleClick = (product: Product) => {
     navigate(`/item/${product.id}`, { state: { product } });
+  };
+
+  const handleViewLastOrder = () => {
+    navigate("/confirmation");
   };
 
   const getItemQuantity = (productId: string) => {
@@ -118,9 +127,34 @@ export function MenuList({ onAdd, carrinho }: any) {
 
   return (
     <div>
-      <div className="text-center py-[70px]">
+      <div className="text-center py-[70px] relative">
         <h2 className="text-3xl font-bold mb-2">Conheça nosso menu</h2>
-        <p className="text-gray-600">Escolha seus itens favoritos</p>
+        <p className="text-gray-600 mb-4">Escolha seus itens favoritos</p>
+
+        {hasRecentOrder && (
+          <div className="flex justify-center">
+            <button
+              onClick={handleViewLastOrder}
+              className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-purple-600 hover:to-purple-700 transition-all transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 shadow-lg flex items-center space-x-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                />
+              </svg>
+              <span>Ver Último Pedido</span>
+            </button>
+          </div>
+        )}
       </div>
 
       <Navbar
@@ -134,7 +168,13 @@ export function MenuList({ onAdd, carrinho }: any) {
         </div>
       </div>
 
-      {isPopUpOpen && <PopUp onClose={() => setIsPopUpOpen(false)} />}
+      {isPopUpOpen && (
+        <PopUp
+          onClose={() => setIsPopUpOpen(false)}
+          title="Item Adicionado!"
+          description="O item foi adicionado ao seu carrinho com sucesso."
+        />
+      )}
     </div>
   );
 }
