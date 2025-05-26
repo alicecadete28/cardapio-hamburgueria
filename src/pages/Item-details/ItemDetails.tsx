@@ -6,35 +6,69 @@ import { useCartContext } from "../../contexts/CartContext";
 import { PopUp } from "../../components/PopUp";
 import { BackButton } from "../../components/BackButton";
 
+interface LocationState {
+  product: Product;
+  currentQuantity?: number;
+  cartItemId?: string;
+}
+
 export default function ProductDetailPage() {
   const { state } = useLocation();
-  const { product } = state as { product: Product };
-  const { carrinho, handleAddToCart } = useCartContext();
+  const { product, currentQuantity, cartItemId } = state as LocationState;
+  const { carrinho, handleAddToCart, handleRemoveFromCart } = useCartContext();
   const navigate = useNavigate();
-  const [quantidade, setQuantidade] = useState(0);
+  const [novaQuantidade, setNovaQuantidade] = useState(0);
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [removedIngredients, setRemovedIngredients] = useState<string[]>([]);
 
-  // Verifica se o item veio do carrinho e carrega os ingredientes removidos
-  useEffect(() => {
-    const cartItem = carrinho.find((item) => item.product.id === product.id);
-    if (cartItem && cartItem.customizations.removedIngredients) {
-      setRemovedIngredients(cartItem.customizations.removedIngredients);
+  // Encontra o item atual no carrinho com as mesmas customizações
+  const getCurrentCartItem = () => {
+    if (cartItemId) {
+      return carrinho.find((item) => item.id === cartItemId);
     }
-  }, [product.id, carrinho]);
+    return carrinho.find(
+      (item) =>
+        item.product.id === product.id &&
+        JSON.stringify(item.customizations.removedIngredients.sort()) ===
+          JSON.stringify(removedIngredients.sort())
+    );
+  };
 
-  const getItemQuantity = (productId: string) => {
-    const item = carrinho.find((item) => item.product.id === productId);
+  // Inicializa os estados com os valores do item do carrinho
+  useEffect(() => {
+    const cartItem = getCurrentCartItem();
+
+    // Inicializa a quantidade
+    if (currentQuantity !== undefined) {
+      setNovaQuantidade(currentQuantity);
+    } else if (cartItem) {
+      setNovaQuantidade(cartItem.quantity);
+    } else {
+      setNovaQuantidade(0);
+    }
+
+    // Inicializa os ingredientes removidos
+    if (cartItem) {
+      setRemovedIngredients(cartItem.customizations.removedIngredients);
+    } else if (product.customizations?.removedIngredients) {
+      setRemovedIngredients(product.customizations.removedIngredients);
+    } else {
+      setRemovedIngredients([]);
+    }
+  }, [cartItemId, product.id]);
+
+  const getItemQuantity = () => {
+    const item = getCurrentCartItem();
     return item ? item.quantity : 0;
   };
 
   const handleAumentar = () => {
-    setQuantidade((prev) => prev + 1);
+    setNovaQuantidade((prev) => prev + 1);
   };
 
   const handleDiminuir = () => {
-    if (quantidade > 0) {
-      setQuantidade((prev) => prev - 1);
+    if (novaQuantidade > 0) {
+      setNovaQuantidade((prev) => prev - 1);
     }
   };
 
@@ -47,6 +81,17 @@ export default function ProductDetailPage() {
   };
 
   const handleConcluir = () => {
+    const currentCartItem = getCurrentCartItem();
+    const currentQuantity = currentCartItem ? currentCartItem.quantity : 0;
+
+    // Se houver um item no carrinho, primeiro remove ele completamente
+    if (currentCartItem) {
+      for (let i = 0; i < currentQuantity; i++) {
+        handleRemoveFromCart(currentCartItem.id);
+      }
+    }
+
+    // Adiciona o item com as novas configurações
     const customizedProduct = {
       ...product,
       customizations: {
@@ -54,23 +99,22 @@ export default function ProductDetailPage() {
       },
     };
 
-    for (let i = 0; i < quantidade; i++) {
+    for (let i = 0; i < novaQuantidade; i++) {
       handleAddToCart(customizedProduct);
     }
-    setIsPopUpOpen(true);
-    setQuantidade(0);
-    setRemovedIngredients([]);
 
-    // Redireciona para a home após um pequeno delay para o PopUp ser visível
+    setIsPopUpOpen(true);
+
+    // Redireciona para o carrinho após um pequeno delay para o PopUp ser visível
     setTimeout(() => {
-      navigate("/");
+      navigate("/cart");
     }, 1500);
   };
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100 p-6">
       <BackButton />
-      <div className="bg-white shadow-xl rounded-2xl p-6 max-w-3xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 transition-all">
+      <div className="bg-white shadow-xl rounded-2xl p-6 max-w-3xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
         <img
           src={product.image}
           alt={product.name}
@@ -111,9 +155,7 @@ export default function ProductDetailPage() {
                     </span>
                     {ingredient.removable && (
                       <button
-                        onClick={() => {
-                          toggleIngredient(ingredient.id);
-                        }}
+                        onClick={() => toggleIngredient(ingredient.id)}
                         className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                           removedIngredients.includes(ingredient.id)
                             ? "bg-red-100 text-red-600 hover:bg-red-200"
@@ -130,42 +172,54 @@ export default function ProductDetailPage() {
               </div>
             </div>
 
-            <p className="text-2xl font-semibold text-green-600 mb-2">
+            <p className="text-2xl font-semibold text-green-600 mb-6">
               R$ {product.price.toFixed(2)}
             </p>
-          </div>
 
-          <div className="mt-4">
-            <div className="flex flex-col gap-2">
-              <p className="text-sm text-gray-500">
-                Quantidade atual no carrinho: {getItemQuantity(product.id)}
-              </p>
-              <p className="text-sm text-gray-500">
-                Nova quantidade a adicionar:
-              </p>
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={handleDiminuir}
-                  className="bg-red-500 text-white px-3 py-1 rounded"
-                >
-                  -
-                </button>
-                <div className="text-lg font-medium bg-gray-200 px-4 py-2 rounded-md">
-                  {quantidade}
+            <div className="mt-4">
+              <div className="flex flex-col gap-4">
+                <p className="text-sm text-gray-500">
+                  Quantidade atual no carrinho: {getItemQuantity()}
+                </p>
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={handleDiminuir}
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors"
+                    >
+                      -
+                    </button>
+                    <div className="text-lg font-medium bg-gray-200 px-4 py-2 rounded-md min-w-[3rem] text-center">
+                      {novaQuantidade}
+                    </div>
+                    <button
+                      onClick={handleAumentar}
+                      className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition-colors"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    onClick={handleConcluir}
+                    className="bg-blue-500 text-white py-3 px-6 rounded-lg text-lg font-medium hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+                  >
+                    <span>Concluir edições</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4.5 12.75l6 6 9-13.5"
+                      />
+                    </svg>
+                  </button>
                 </div>
-                <button
-                  onClick={handleAumentar}
-                  className="bg-green-500 text-white px-3 py-1 rounded"
-                >
-                  +
-                </button>
-                <button
-                  onClick={handleConcluir}
-                  className="bg-blue-500 text-white px-4 py-1 rounded"
-                  disabled={quantidade === 0}
-                >
-                  Concluir
-                </button>
               </div>
             </div>
           </div>
@@ -173,8 +227,8 @@ export default function ProductDetailPage() {
       </div>
       {isPopUpOpen && (
         <PopUp
-          title="Item adicionado com sucesso!"
-          description="O item foi adicionado ao carrinho com sucesso."
+          title="Carrinho atualizado!"
+          description="O item foi atualizado com sucesso."
           onClose={() => setIsPopUpOpen(false)}
         />
       )}

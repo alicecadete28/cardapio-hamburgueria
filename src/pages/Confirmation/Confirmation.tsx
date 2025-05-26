@@ -1,6 +1,7 @@
 import React from "react";
 import { useCartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
+import { BackButton } from "../../components/BackButton";
 
 const ConfirmedOrder = () => {
   const { carrinho } = useCartContext();
@@ -11,6 +12,7 @@ const ConfirmedOrder = () => {
   if (!carrinho) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100 text-gray-600">
+        <BackButton />
         <h1 className="text-2xl font-semibold">Nenhum pedido encontrado.</h1>
       </div>
     );
@@ -19,6 +21,7 @@ const ConfirmedOrder = () => {
   if (!isOrderConfirmed) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-8">
+        <BackButton />
         <div className="max-w-3xl mx-auto px-4">
           <div className="bg-white rounded-xl shadow-md p-8 text-center">
             <div className="bg-gray-100 w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center">
@@ -71,6 +74,7 @@ const ConfirmedOrder = () => {
   } else {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-8">
+        <BackButton />
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-8">
             <div className="bg-green-100 w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center">

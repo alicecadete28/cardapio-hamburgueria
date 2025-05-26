@@ -4,7 +4,7 @@ export default function Footer({ totalQuantidade }: any) {
   const navigate = useNavigate();
 
   return (
-    <footer className="w-full bg-gradient-to-r from-red-600 to-red-500 py-4 fixed bottom-0 z-40">
+    <footer className="w-full bg-gradient-to-r from-red-600 to-red-500 py-4 fixed bottom-0 z-50">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <div className="flex-1"></div> {/* Espaçador */}
         <button

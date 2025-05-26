@@ -293,9 +293,8 @@ export const product: (Product & { category: string })[] = [
   },
   {
     id: "milkshake",
-    name: "Milk Shake",
-    description:
-      "Milk shake cremoso nos sabores chocolate, morango ou baunilha",
+    name: "Milk Shake de Oreo",
+    description: "Milk shake cremoso feito com o delicioso biscoito oreo",
     price: 18.9,
     image: milkshake,
     category: "sobremesas",
@@ -304,8 +303,7 @@ export const product: (Product & { category: string })[] = [
   {
     id: "casquinha",
     name: "Casquinha",
-    description:
-      "Casquinha de sorvete nos sabores chocolate, morango ou baunilha",
+    description: "Casquinha de sorvete sabor baunilha",
     price: 8.9,
     image: casquinha,
     category: "sobremesas",

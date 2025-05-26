@@ -69,15 +69,15 @@ export function MenuList({ onAdd, carrinho }: any) {
 
   const renderProductCard = (product: Product) => (
     <div
-      className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full"
+      className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full cursor-pointer"
       key={product.id}
+      onClick={() => handleClick(product)}
     >
       <div className="relative">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-64 object-contain bg-white cursor-pointer"
-          onClick={() => handleClick(product)}
+          className="w-full h-64 object-contain bg-white"
         />
         <div className="absolute top-2 right-2 bg-gray-900 text-white px-3 py-1 rounded-full">
           R$ {product.price.toFixed(2)}
@@ -97,7 +97,7 @@ export function MenuList({ onAdd, carrinho }: any) {
 
         <div className="mt-auto">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-2">
+            {/* <div className="flex items-center space-x-2">
               <button
                 onClick={() => handleDiminuir(product.id)}
                 className="bg-red-500 hover:bg-red-600 text-white w-8 h-8 rounded flex items-center justify-center transition-colors"
@@ -105,7 +105,7 @@ export function MenuList({ onAdd, carrinho }: any) {
                 -
               </button>
               <span className="w-8 text-center font-medium">
-                {quantidades[product.id] || 0}
+                {getItemQuantity(product.id)}
               </span>
               <button
                 onClick={() => handleAumentar(product.id)}
@@ -113,8 +113,8 @@ export function MenuList({ onAdd, carrinho }: any) {
               >
                 +
               </button>
-            </div>
-            <div className="flex gap-2">
+            </div> */}
+            {/* <div className="flex gap-2">
               <button
                 onClick={() => handleClick(product)}
                 className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded transition-colors"
@@ -128,7 +128,7 @@ export function MenuList({ onAdd, carrinho }: any) {
               >
                 Adicionar
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
