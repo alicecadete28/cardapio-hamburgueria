@@ -69,7 +69,7 @@ export function MenuList({ onAdd, carrinho }: any) {
 
   const renderProductCard = (product: Product) => (
     <div
-      className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+      className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full"
       key={product.id}
     >
       <div className="relative">
@@ -84,17 +84,19 @@ export function MenuList({ onAdd, carrinho }: any) {
         </div>
       </div>
 
-      <div className="p-4">
-        <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-        <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+      <div className="p-4 flex flex-col flex-1">
+        <div className="flex-1">
+          <h3 className="text-xl font-bold mb-2">{product.name}</h3>
+          <p className="text-gray-600 text-sm">{product.description}</p>
+        </div>
 
-        <div className="space-y-3">
-          <div className="flex items-center justify-between text-sm text-gray-500">
-            <span>No carrinho:</span>
-            <span className="font-medium">{getItemQuantity(product.id)}</span>
-          </div>
+        <div className="flex items-center justify-between text-sm text-gray-500 py-4">
+          <span>No carrinho:</span>
+          <span className="font-medium">{getItemQuantity(product.id)}</span>
+        </div>
 
-          <div className="flex items-center justify-between">
+        <div className="mt-auto">
+          <div className="flex justify-between items-center">
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => handleDiminuir(product.id)}
@@ -112,13 +114,21 @@ export function MenuList({ onAdd, carrinho }: any) {
                 +
               </button>
             </div>
-            <button
-              onClick={() => handleAdd(product)}
-              disabled={(quantidades[product.id] || 0) === 0}
-              className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-4 py-2 rounded transition-colors"
-            >
-              Adicionar
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => handleClick(product)}
+                className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded transition-colors"
+              >
+                Personalizar
+              </button>
+              <button
+                onClick={() => handleAdd(product)}
+                disabled={(quantidades[product.id] || 0) === 0}
+                className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-4 py-2 rounded transition-colors"
+              >
+                Adicionar
+              </button>
+            </div>
           </div>
         </div>
       </div>

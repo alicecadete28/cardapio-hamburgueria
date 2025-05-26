@@ -12,8 +12,6 @@ export function Cart() {
     });
   };
 
-  console.log(carrinho);
-
   return (
     <div className="min-h-screen bg-gray-100 py-8">
       <BackButton />
@@ -35,7 +33,7 @@ export function Cart() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
               {carrinho.map((item) => (
                 <div
-                  key={item.product.id}
+                  key={item.id}
                   className="flex items-center p-6 border-b border-gray-200 last:border-0"
                 >
                   <img
@@ -73,16 +71,24 @@ export function Cart() {
                         R$ {(item.product.price * item.quantity).toFixed(2)}
                       </div>
                     </div>
+                    <div className="flex gap-2 mt-2">
+                      <button
+                        onClick={() => handleClick(item)}
+                        className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-1 rounded text-sm transition-colors"
+                      >
+                        Personalizar
+                      </button>
+                      <button
+                        onClick={() => {
+                          console.log("Removendo item com ID:", item.id);
+                          handleRemoveFromCart(item.id);
+                        }}
+                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded text-sm transition-colors"
+                      >
+                        Remover
+                      </button>
+                    </div>
                   </div>
-                  <button
-                    onClick={() => {
-                      console.log("Removendo item com ID:", item.id);
-                      handleRemoveFromCart(item.id);
-                    }}
-                    className="ml-6 text-red-500 hover:text-red-600"
-                  >
-                    <i className="fa fa-trash"></i>
-                  </button>
                 </div>
               ))}
             </div>

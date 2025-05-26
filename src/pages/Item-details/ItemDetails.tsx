@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom"; // se usar rotas dinâmicas
 import burger1 from "../../assets/burger1.png"; // Importando a imagem do burger
 import { Product } from "../../types/Product";
@@ -14,6 +14,14 @@ export default function ProductDetailPage() {
   const [quantidade, setQuantidade] = useState(0);
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [removedIngredients, setRemovedIngredients] = useState<string[]>([]);
+
+  // Verifica se o item veio do carrinho e carrega os ingredientes removidos
+  useEffect(() => {
+    const cartItem = carrinho.find((item) => item.product.id === product.id);
+    if (cartItem && cartItem.customizations.removedIngredients) {
+      setRemovedIngredients(cartItem.customizations.removedIngredients);
+    }
+  }, [product.id, carrinho]);
 
   const getItemQuantity = (productId: string) => {
     const item = carrinho.find((item) => item.product.id === productId);
@@ -103,7 +111,9 @@ export default function ProductDetailPage() {
                     </span>
                     {ingredient.removable && (
                       <button
-                        onClick={() => toggleIngredient(ingredient.id)}
+                        onClick={() => {
+                          toggleIngredient(ingredient.id);
+                        }}
                         className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                           removedIngredients.includes(ingredient.id)
                             ? "bg-red-100 text-red-600 hover:bg-red-200"
@@ -161,7 +171,13 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
-      {isPopUpOpen && <PopUp onClose={() => setIsPopUpOpen(false)} />}
+      {isPopUpOpen && (
+        <PopUp
+          title="Item adicionado com sucesso!"
+          description="O item foi adicionado ao carrinho com sucesso."
+          onClose={() => setIsPopUpOpen(false)}
+        />
+      )}
     </div>
   );
 }
