@@ -1,12 +1,25 @@
-# React + Vite
+## 🚀 Rodando o projeto localmente
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Pré-requisitos
 
-Currently, two official plugins are available:
+- Node.js (recomenda-se a versão 18 ou superior)
+- npm ou yarn
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Instalação
 
-## Expanding the ESLint configuration
+1. Clone o repositório:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+git clone https://github.com/alicecadete28/cardapio-hamburgueria.git
+cd seu-projeto
+
+2. Instale as dependências:
+
+- npm install
+  ou
+- yarn install
+
+### Rode o servidor
+
+- npm run dev
+  ou
+- yarn dev
