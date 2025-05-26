@@ -2,7 +2,7 @@ import { useCartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import { BackButton } from "../../components/BackButton";
 import { CartItem } from "../../types/CartItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PopUp } from "../../components/PopUp";
 
 export function Cart() {
@@ -28,34 +28,33 @@ export function Cart() {
     });
   };
 
-  // Inicializa as quantidades com os valores atuais do carrinho
-  const initializeQuantidades = (item: CartItem) => {
-    if (quantidades[item.id] === undefined) {
-      setQuantidades((prev) => ({
-        ...prev,
-        [item.id]: item.quantity,
-      }));
-    }
-  };
+  useEffect(() => {
+    // Inicializa as quantidades quando o carrinho muda
+    const novasQuantidades: { [key: string]: number } = {};
+    carrinho.forEach((item) => {
+      novasQuantidades[item.id] = item.quantity;
+    });
+    setQuantidades(novasQuantidades);
+  }, [carrinho]);
 
   const handleAumentar = (item: CartItem) => {
     setQuantidades((prev) => ({
       ...prev,
-      [item.id]: (prev[item.id] || item.quantity) + 1,
+      [item.id]: quantidades[item.id] + 1,
     }));
   };
 
   const handleDiminuir = (item: CartItem) => {
-    if ((quantidades[item.id] || item.quantity) > 0) {
+    if (quantidades[item.id] > 0) {
       setQuantidades((prev) => ({
         ...prev,
-        [item.id]: (prev[item.id] || item.quantity) - 1,
+        [item.id]: quantidades[item.id] - 1,
       }));
     }
   };
 
   const handleConcluir = (item: CartItem) => {
-    const novaQuantidade = quantidades[item.id] || item.quantity;
+    const novaQuantidade = quantidades[item.id];
     const diferenca = novaQuantidade - item.quantity;
 
     if (diferenca > 0) {
@@ -101,7 +100,6 @@ export function Cart() {
           <>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
               {carrinho.map((item) => {
-                initializeQuantidades(item);
                 return (
                   <div
                     key={item.id}
@@ -165,7 +163,7 @@ export function Cart() {
                               -
                             </button>
                             <div className="text-lg font-medium bg-gray-200 px-4 py-1 rounded-md">
-                              {quantidades[item.id] || item.quantity}
+                              {quantidades[item.id]}
                             </div>
                             <button
                               onClick={() => handleAumentar(item)}
